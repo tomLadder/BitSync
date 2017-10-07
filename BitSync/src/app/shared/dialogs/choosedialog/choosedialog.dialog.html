@@ -1,0 +1,27 @@
+<div id="content">
+  <div id="options" *ngIf="!ready">
+    <div id="divDirs" (click)="openDialogDirectory()">
+        <i class="material-icons" style="font-size:48px;">folder</i>
+        <a class="desc">Directories</a>
+    </div>
+
+    <div id="divFiles" (click)="openDialogFile()">
+      <i class="material-icons" style="font-size:48px;">attachment</i>
+      <a class="desc">Files</a>
+    </div>
+  </div>
+
+  <div class="divInfo" *ngIf="ready&&!isfile">
+      <i class="material-icons" style="font-size:48px;">folder</i>
+      <a class="desc">{{paths.length}}</a>
+  </div>
+
+  <div class="divInfo" *ngIf="ready&&isfile">
+      <i class="material-icons" style="font-size:48px;">attachment</i>
+      <a class="desc">{{paths.length}}</a>
+  </div>
+
+  <div id="actions">
+      <button mat-raised-button color="primary" [disabled]="!ready" (click)="finish()">Watch&nbsp;&&nbsp;Sync</button>
+  </div>
+</div>

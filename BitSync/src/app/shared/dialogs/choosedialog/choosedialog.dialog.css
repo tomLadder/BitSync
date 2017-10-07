@@ -1,0 +1,70 @@
+#content {
+  width: 100%;
+  height: 100%;
+}
+
+#divFiles {
+  width: 50%;
+  height: 100%;
+  background-color: #66BB6A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+#divFiles:hover {
+  cursor: pointer;
+  background-color: #81C784;
+}
+
+#divDirs {
+  width: 50%;
+  height: 100%;
+  background-color: #4CAF50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+#divDirs:hover {
+  cursor: pointer;
+  background-color: #43A047;
+}
+
+.desc {
+  font-size: 24px;
+}
+
+#options {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#actions {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#actions > button {
+  width: 100%;
+}
+
+.divInfo {
+  width: 100%;
+  height: 80%;
+  background-color: #4CAF50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

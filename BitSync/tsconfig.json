@@ -19,7 +19,10 @@
     "pretty": true,
     "target": "es2015",
     "outDir": "dist",
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": [
+      "hammerjs"
+    ]
   },
   "formatCodeOptions": {
     "indentSize": 2,
