@@ -1,0 +1,18 @@
+<div class="observablecontent">
+    <div class="left">
+      <i *ngIf="observable.type===1" class="material-icons" style="font-size:36px;">folder</i>
+      <i *ngIf="observable.type===0" class="material-icons" style="font-size:36px;">attachment</i>
+    </div>
+
+    <div class="middle">
+      <a>{{observable.path}}</a>
+    </div>
+
+    <div class="right">
+        <mat-chip-list *ngIf="observable.type===1">
+          <mat-chip color="primary">Synchronized</mat-chip>
+        </mat-chip-list>
+
+        <mat-spinner *ngIf="observable.type===0" [diameter]=40></mat-spinner>
+    </div>
+</div>

@@ -1,7 +1,10 @@
+import { ObservableService } from './../shared/services/observable.service';
+import { Observable } from './../shared/data/observable';
 import { ChooseDialog } from './../shared/dialogs/choosedialog/choosedialog.dialog';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { StatusComponent } from './../status/status.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ObservableType } from '../shared/data/observableType.enum';
 
 @Component({
   selector: 'app-main',
@@ -11,11 +14,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 export class MainComponent implements OnInit {
   @ViewChild('status') status: StatusComponent;
+  private observables: Observable[] = new Array();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private observableService: ObservableService) {}
 
   ngOnInit(): void {
-    
+    this.observableService.readObservables((result: Observable[]) => {
+      this.observables = result;
+      this.updateStatus();
+    },
+    (err: any) => {
+      console.log(err);
+    });
   }
 
   openDialog(): void {
@@ -26,17 +36,30 @@ export class MainComponent implements OnInit {
 
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
       if(result) {
-        
+        this.observables = this.observables.concat(result);
+
+        this.observableService.saveObservables((this.observables), (err: any) => {
+          console.log('Error: ' + err);
+        });
+
+        this.updateStatus();
       }
-      console.log(JSON.stringify(result));
     });
   }
 
   addObservable(): void {
-    this.status.updateStatus();
     this.openDialog();
+  }
+
+  updateStatus(): void {
+    if(this.observables) {
+      let cntFiles = this.observables.filter((value: Observable) => {return value.Type === ObservableType.FILE}).length;
+      let cntDirs = this.observables.filter((value: Observable) => {return value.Type === ObservableType.DIRECTORY}).length;
+
+      console.log(cntFiles);
+
+      this.status.updateWatchCount(cntFiles, cntDirs);
+    }
   }
 }

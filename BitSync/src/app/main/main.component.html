@@ -2,15 +2,9 @@
   <mat-icon class="material-icons md-24">add</mat-icon>
 </button>
 
-<app-status #status></app-status>
-
 <div id="content">
-  <div id="dirs">
-
+  <app-status #status></app-status>
+  <div id="observables">
+    <app-observable class="appobservable" *ngFor="let observable of observables" [observable]="observable"></app-observable>
   </div>
-  
-  <div id="files">
-    
-  </div>
-
 </div>

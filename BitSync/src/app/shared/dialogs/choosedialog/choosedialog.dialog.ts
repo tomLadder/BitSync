@@ -1,3 +1,5 @@
+import { Observable } from './../../data/observable';
+import { ObservableType } from '../../data/observabletype.enum';
 import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import * as electron from 'electron';
@@ -11,10 +13,13 @@ export class ChooseDialog {
 
   private ready: bool = false;
   private isfile: bool = false;
-  private paths: string[];
+  private observables: Observable[] = new Array();
 
 
   constructor(public dialogRef: MatDialogRef<ChooseDialog>, @Inject(MAT_DIALOG_DATA) public data: any, private cdRef:ChangeDetectorRef) {
+    this.ready = false;
+    this.isfile = false;
+    this.observables = new Array();
   }
 
   private openDialogDirectory() {
@@ -22,7 +27,10 @@ export class ChooseDialog {
     let window:Electron.BrowserWindow = electron.remote.getCurrentWindow();
     dialog.showOpenDialog(window, {properties: ['openDirectory', 'multiSelections']}, (_paths: string[]) => {
       if(_paths !== undefined) {
-        this.paths = _paths;
+        _paths.forEach((path) => {
+          this.observables.push(new Observable(path, ObservableType.DIRECTORY));
+        });
+
         this.isfile = false;
         this.ready = true;
         this.cdRef.detectChanges();
@@ -35,7 +43,10 @@ export class ChooseDialog {
     let window:Electron.BrowserWindow = electron.remote.getCurrentWindow();
     dialog.showOpenDialog(window, {properties: ['openFile', 'multiSelections']}, (_paths: string[]) => {
       if(_paths !== undefined) {
-        this.paths = _paths;
+        _paths.forEach((path) => {
+          this.observables.push(new Observable(path, ObservableType.FILE));
+        });
+
         this.isfile = true;
         this.ready = true;
         this.cdRef.detectChanges();
@@ -44,6 +55,6 @@ export class ChooseDialog {
   }
 
   finish() {
-    this.dialogRef.close({isfile: this.isfile, paths: this.paths});
+    this.dialogRef.close(this.observables);
   }
 }

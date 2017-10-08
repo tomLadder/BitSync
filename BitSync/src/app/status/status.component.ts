@@ -27,8 +27,10 @@ export class StatusComponent implements OnInit {
     this.year = date.getFullYear();
 
     this.time = date.toLocaleTimeString("de-DE");
+  }
 
-    this.cntFile = 0;
-    this.cntDir = 0;
+  updateWatchCount(numFilePaths: number, numDirPaths: number): void {
+    this.cntFile = numFilePaths;
+    this.cntDir = numDirPaths;
   }
 }
