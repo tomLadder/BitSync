@@ -13,6 +13,14 @@
 </br>
 This software helps you to synchronize your files and directories between different locations.
 
+## Screenshots
+<img src="https://github.com/tomLadder/BitSync/blob/master/img/1.png" align="center"/>
+<img src="https://github.com/tomLadder/BitSync/blob/master/img/2.png" align="center"/>
+<img src="https://github.com/tomLadder/BitSync/blob/master/img/3.png" align="center"/>
+<img src="https://github.com/tomLadder/BitSync/blob/master/img/4.png" align="center"/>
+
+<br>
+
 ## Authors
 
 * **Thomas Leiter** - *Lead Developer* - [tomLadder](https://github.com/tomLadder)
