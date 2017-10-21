@@ -1,1 +1,2 @@
 *.rb linguist-language=Typescript
+src/assets/themes/* linguist-vendored
