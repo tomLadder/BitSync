@@ -11,7 +11,7 @@ export class ObservableService {
 
   saveObservables(observables: Observable[], errCallback: Function): void {
     try {
-      fs.writeFileSync('data.json', JSON.stringify(observables)), 'utf-8');
+      fs.writeFileSync('data.json', JSON.stringify(observables), 'utf-8');
     } catch(e) {
       console.log('Error: ' + e)
       errCallback(e);
@@ -24,7 +24,7 @@ export class ObservableService {
       let result: Observable[] = new Array();
 
       for(let i=0;i<obj.length;i++) {
-        result.push(new Observable(obj[i].path, obj[i].type));
+        result.push(new Observable(obj[i].path, obj[i].destination, obj[i].type));
       }
 
       rescallback(result);

@@ -11,9 +11,10 @@ import * as electron from 'electron';
 })
 export class ChooseDialog {
 
-  private ready: bool = false;
-  private isfile: bool = false;
+  private ready = false;
+  private isfile = false;
   private observables: Observable[] = new Array();
+  private destinationPath: string = "";
 
 
   constructor(public dialogRef: MatDialogRef<ChooseDialog>, @Inject(MAT_DIALOG_DATA) public data: any, private cdRef:ChangeDetectorRef) {
@@ -28,7 +29,7 @@ export class ChooseDialog {
     dialog.showOpenDialog(window, {properties: ['openDirectory', 'multiSelections']}, (_paths: string[]) => {
       if(_paths !== undefined) {
         _paths.forEach((path) => {
-          this.observables.push(new Observable(path, ObservableType.DIRECTORY));
+          this.observables.push(new Observable(path, this.destinationPath, ObservableType.DIRECTORY));
         });
 
         this.isfile = false;
@@ -44,7 +45,7 @@ export class ChooseDialog {
     dialog.showOpenDialog(window, {properties: ['openFile', 'multiSelections']}, (_paths: string[]) => {
       if(_paths !== undefined) {
         _paths.forEach((path) => {
-          this.observables.push(new Observable(path, ObservableType.FILE));
+          this.observables.push(new Observable(path,this.destinationPath, ObservableType.FILE));
         });
 
         this.isfile = true;
@@ -55,6 +56,22 @@ export class ChooseDialog {
   }
 
   finish() {
+    console.log('finish :)');
     this.dialogRef.close(this.observables);
+  }
+
+  private openDestinationDialogDirectory() {
+    let dialog = electron.remote.dialog;
+    let window:Electron.BrowserWindow = electron.remote.getCurrentWindow();
+    dialog.showOpenDialog(window, {properties: ['openDirectory']}, (_paths: string[]) => {
+      if(_paths !== undefined) {
+        this.destinationPath = _paths[0];
+        this.cdRef.detectChanges();
+      }
+    });
+  }
+
+  setDestination() {
+    this.openDestinationDialogDirectory();
   }
 }

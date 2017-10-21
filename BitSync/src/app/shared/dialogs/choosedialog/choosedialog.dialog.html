@@ -1,5 +1,9 @@
 <div id="content">
-  <div id="options" *ngIf="!ready">
+  <div id="actions2" *ngIf="destinationPath===''">
+      <button mat-raised-button color="primary" [disabled]="observables.length != 0" (click)="setDestination()">Choose Destination</button>
+  </div>
+
+  <div id="options" *ngIf="!ready&&destinationPath!=''">
     <div id="divDirs" (click)="openDialogDirectory()">
         <i class="material-icons" style="font-size:48px;">folder</i>
         <a class="desc">Directories</a>
@@ -21,7 +25,7 @@
       <a class="desc">{{observables.length}}</a>
   </div>
 
-  <div id="actions">
+  <div id="actions" *ngIf="destinationPath!=''">
       <button mat-raised-button color="primary" [disabled]="!ready" (click)="finish()">Watch&nbsp;&&nbsp;Sync</button>
   </div>
 </div>
