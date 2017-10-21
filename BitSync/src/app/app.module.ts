@@ -1,3 +1,4 @@
+import { SafePipe } from './shared/pipes/safepipe.pipe';
 import { OBSERVABLE_PROVIDERS } from './shared/services/observable.service';
 import { ObservableComponent } from './main/observable/observable.component';
 import { ChooseDialog } from './shared/dialogs/choosedialog/choosedialog.dialog';
@@ -15,7 +16,7 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule, MatDialogModule, Mat
 
 @NgModule({
   imports: [routing,BrowserModule,BrowserAnimationsModule,NoopAnimationsModule,MatButtonModule,MatCheckboxModule,MatCardModule,MatCardModule,MatDialogModule,MatSnackBarModule,MatChipsModule,MatProgressSpinnerModule],
-  declarations: [AppComponent, MainComponent, StatusComponent, ChooseDialog, ObservableComponent],
+  declarations: [AppComponent, MainComponent, StatusComponent, ChooseDialog, ObservableComponent, SafePipe],
   entryComponents: [ChooseDialog],
   bootstrap: [AppComponent],
   providers:[{provide: APP_BASE_HREF, useValue : '/' }, OBSERVABLE_PROVIDERS]

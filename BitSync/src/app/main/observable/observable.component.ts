@@ -1,5 +1,7 @@
+import { IconHelper } from './../../shared/util/iconhelper';
 import { Observable } from './../../shared/data/observable';
 import { Component, OnInit, Input } from '@angular/core';
+var path = require('path');
 
 @Component({
   selector: 'app-observable',
@@ -9,11 +11,14 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class ObservableComponent implements OnInit {
 
-  public @Input() observable: Observable;
+  @Input() observable: Observable;
+  private short_path:string;
+  private icon_path:string
 
   constructor() {}
 
   ngOnInit(): void {
-
+    this.short_path = path.basename(this.observable.Path);
+    this.icon_path = "assets://img/svg icons/" + IconHelper.getIcon(this.observable.Path);
   }
 }

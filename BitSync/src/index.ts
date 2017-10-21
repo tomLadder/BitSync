@@ -1,5 +1,6 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import { enableLiveReload } from 'electron-compile';
+var path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,7 +10,8 @@ const isDevMode = process.execPath.match(/[\\/]electron/);
 
 if (isDevMode) enableLiveReload();
 
-const createWindow = async () => {
+const createWindow = async () => {;
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -19,6 +21,17 @@ const createWindow = async () => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
+
+
+  protocol.registerFileProtocol('assets', (request, cb) => {
+    if ( !request.url ) {
+      cb ();
+      return;
+    }
+
+    var url = request.url.substr(7);
+    cb (path.join(__dirname, 'assets', url));
+  });
 
   // Open the DevTools.
   if (isDevMode) {
@@ -32,6 +45,8 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+
 };
 
 // This method will be called when Electron has finished

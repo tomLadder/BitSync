@@ -57,8 +57,6 @@ export class MainComponent implements OnInit {
       let cntFiles = this.observables.filter((value: Observable) => {return value.Type === ObservableType.FILE}).length;
       let cntDirs = this.observables.filter((value: Observable) => {return value.Type === ObservableType.DIRECTORY}).length;
 
-      console.log(cntFiles);
-
       this.status.updateWatchCount(cntFiles, cntDirs);
     }
   }
