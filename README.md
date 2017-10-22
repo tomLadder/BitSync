@@ -12,7 +12,7 @@
 
 </br>
 </br>
-This software helps you to synchronize your files and directories between different locations.
+This software helps you to synchronize your files and directories between different locations. No network connections is required to use this software. It was primarily desigend to manage file synchronization between virtual machines and their host (VMWare - Shared Folder).
 
 ## Credits
 Icon made by [Smashicons](https://www.flaticon.com/authors/smashicons) from www.flaticon.com 
