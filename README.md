@@ -7,7 +7,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tomLadder/BitSync/blob/master/LICENSE)
 [![GitHub forks](https://img.shields.io/github/forks/tomLadder/OpenPass.svg?style=flat-square)](https://github.com/tomLadder/BitSync/network)
 [![GitHub stars](https://img.shields.io/github/stars/tomLadder/OpenPass.svg?style=flat-square)](https://github.com/tomLadder/BitSync/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/tomLadder/OpenPass.svg?style=flat-square)](https://github.com/tomLadder/BitSync/issues)
+[![GitHub issues](https://img.shields.io/github/issues/tomLadder/OpenPass.svg?style=flat-square)](https://github.com/tomLadder/BitSync/issues)<br>
+[![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
 </br>
 </br>
